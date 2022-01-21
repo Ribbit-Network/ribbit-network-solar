@@ -1,0 +1,16 @@
+(kicad_sch (version 20211123) (generator eeschema)
+
+  (uuid 8d47c5be-4b16-4848-be8e-a738ad0f39f5)
+
+  (paper "A4")
+
+  (title_block
+    (title "MCU")
+    (date "2022-01-20")
+    (rev "0.0.1")
+  )
+
+  (lib_symbols
+  )
+
+)
