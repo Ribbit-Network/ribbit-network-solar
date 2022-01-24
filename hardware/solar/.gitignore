@@ -1,4 +1,4 @@
 # KiCAD project files 
- *-backups/
- *.kicad_prl
- fp-info-cache
+*-backups/
+*.kicad_prl
+fp-info-cache
