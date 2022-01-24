@@ -327,7 +327,11 @@
     ],
     [
       "3cd4dbff-703f-470c-ad8d-72626283c5ec",
-      "boost_regulator"
+      "Boost Regulator"
+    ],
+    [
+      "8477ebf3-07c1-48ed-8b36-16fdb1e336a8",
+      "INA219 (Current Sense)"
     ]
   ],
   "text_variables": {}

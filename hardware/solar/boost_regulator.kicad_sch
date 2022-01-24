@@ -4,6 +4,11 @@
 
   (paper "A4")
 
+  (title_block
+    (date "2022-01-20")
+    (rev "0.0.1")
+  )
+
   (lib_symbols
   )
 
@@ -11,6 +16,11 @@
   (wire (pts (xy 149.86 82.55) (xy 170.18 82.55))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 09b54dfb-2515-45eb-a8fa-048d42306152)
+  )
+
+  (text "TBD" (at 157.48 81.28 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 836e7346-b1cf-4d5c-a17f-c7ce4eaaaa10)
   )
 
   (hierarchical_label "5V0" (shape input) (at 170.18 82.55 0)
