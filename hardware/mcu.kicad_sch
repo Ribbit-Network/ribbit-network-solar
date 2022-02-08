@@ -6,8 +6,8 @@
 
   (title_block
     (title "MCU")
-    (date "2022-01-20")
-    (rev "0.0.1")
+    (date "2022-02-07")
+    (rev "0.0.2")
   )
 
   (lib_symbols

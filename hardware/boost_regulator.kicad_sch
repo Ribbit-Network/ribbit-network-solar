@@ -5,8 +5,8 @@
   (paper "A4")
 
   (title_block
-    (date "2022-01-20")
-    (rev "0.0.1")
+    (date "2022-02-07")
+    (rev "0.0.2")
   )
 
   (lib_symbols
@@ -27,7 +27,7 @@
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 3a688812-2354-4cd9-a257-3844948f756a)
   )
-  (hierarchical_label "3V0" (shape input) (at 149.86 82.55 180)
+  (hierarchical_label "VIN" (shape input) (at 149.86 82.55 180)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid ba6ed854-813d-4d77-870b-eba622ca8766)
   )
