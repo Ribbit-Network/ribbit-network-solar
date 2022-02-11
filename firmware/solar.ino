@@ -9,14 +9,14 @@
 #define VSENSE_USB   A3
 
 #define RTC_INTERRUPT 2
-#define LOAD_SWITCH 13
+#define LOAD_SWITCH 10
 
 #define CMD_READ_VOLTAGE    0xa1
-#define CMD_SCHEDULE_SLEEP 0xa2
+#define CMD_SCHEDULE_SLEEP  0xa2
 
 volatile int transaction_complete = true;
 volatile int new_command = false;
-volatile uint8_t command_response = 0x0;
+volatile uint8_t command_response[2] = {0x0, 0x0};
 volatile int rtc_alarm = false;
 
 #define CMD_BUF_LEN 2
@@ -38,8 +38,10 @@ void receive_command(int bytes_in) {
 }
 
 void respond_command(void) {
-  Wire.write(command_response);
-  command_response = 0;
+  Wire.write(command_response[0]);
+  Wire.write(command_response[1]);
+  command_response[0] = 0;
+  command_response[1] = 0;
   transaction_complete = true;
 }
 
@@ -74,7 +76,7 @@ void loop() {
   // Code resumes here when woken by I2C address match interrupt
   Serial.println("Up!");
   if (rtc.checkIfAlarm(1)) {
-    Serial.println("Alarm is enabled");
+    Serial.println("Alarm is ringing!");
     // switch load on
     digitalWrite(LOAD_SWITCH, LOW);
   }
@@ -116,13 +118,16 @@ uint16_t read_pin(int analog_pin_num) {
 
 int process_command(volatile uint8_t* cmd_buffer) {
   int rc = 0;
-  // Serial.println(cmd_buffer[0]);
+  Serial.print("cmd: "); Serial.println(cmd_buffer[0], HEX);
   switch(cmd_buffer[0]) {
       case CMD_READ_VOLTAGE:
       {
         // adc val is 10 bits, round down to 8 bits for command
         uint16_t pin_voltage = read_pin(cmd_buffer[1]);
-        command_response = (uint8_t) pin_voltage;
+        Serial.print("voltage: "); Serial.println(pin_voltage); 
+        command_response[0] = (uint8_t) pin_voltage;
+        command_response[1] = (uint8_t) (pin_voltage >> 8) & 0xFF;
+
         break;
       }
       case CMD_SCHEDULE_SLEEP:
@@ -141,6 +146,7 @@ int process_command(volatile uint8_t* cmd_buffer) {
         break;
       }
       default:
+        Serial.println("Unknown!");
         transaction_complete = true;
   }
   
